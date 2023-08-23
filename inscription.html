@@ -10,32 +10,33 @@
 </head>
 
 <body>
-    <h2>Inscription</h2>
-    <div class="inscription">
+    <div class="container">
+        <h2>Inscription</h2>
+        <div class="inscription">
+            <button type="submit" class="btn" name="inscription">Connexion</button>
+        </div>
 
-        <button type="submit" class="inscription" name="inscription">Connexion</button>
+        <form action="traitement.php" method="post" enctype="multipart/form-data">
+
+
+             <label for="email"></label>
+             <input type="email" name="email" placeholder="email" placeholder="email"><br><br>
+     
+             <label for="pseudo"></label>
+             <input type="text" name="pseudo" required placeholder="pseudo"><br><br>
+     
+             <label for="motdepasse"></label>
+             <input type="password" name="motdepasse" placeholder="password"><br><br>
+     
+             <label for="confirmermotdepasse"></label>
+             <input type="password" name="confirmermotdepasse" required placeholder="confirmerpassword"><br><br>
+     
+             <label for="fichier"></label>
+             <input type="file" name="fichier" class="fichier" ><br><br>
+     
+             <button type="submit" name="valider" class="valider">inscription</button>
+        </form>
     </div>
-
-    <form action="traitement.php" method="post" enctype="multipart/form-data">
-
-
-        <label for="email"></label>
-        <input type="email" name="email" placeholder="email" placeholder="email"><br><br>
-
-        <label for="pseudo"></label>
-        <input type="text" name="pseudo" required placeholder="pseudo"><br><br>
-
-        <label for="motdepasse"></label>
-        <input type="password" name="motdepasse" placeholder="password"><br><br>
-
-        <label for="confirmermotdepasse"></label>
-        <input type="password" name="confirmermotdepasse" required placeholder="confirmermotdepasse"><br><br>
-
-        <label for="fichier"></label>
-        <input type="file" name="fichier" confirmermotdepasse placeholder="fichier"><br><br>
-
-        <button type="submit" name="valider" class="valider">inscription</button>
-    </form>
 
 </body>
 
