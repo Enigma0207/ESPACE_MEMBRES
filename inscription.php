@@ -10,16 +10,12 @@
 </head>
 
 <body>
-    <?php include_once "nav.php"; ?>
+    <?php 'include_once "nav.php"'; ?>
     <header>
 
     </header>
     <main>
         <div class="container">
-            
-          
-           
-  
             <form action="traitement.php" method="POST" enctype="multipart/form-data">
   
                  <div class="banner">
