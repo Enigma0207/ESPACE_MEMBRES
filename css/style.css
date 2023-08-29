@@ -149,3 +149,23 @@ width: 60px;
     left: 350px;
     top: 20px;
 }
+
+.container{
+    display: flex;
+    margin-top: 20px;
+}
+.container p{
+ margin: 10px 20px;
+}
+.container span{
+ margin: 10px;
+}
+.container a{
+ margin: 10px 10px;
+}
+.container span{
+ margin: 10px;
+}
+.container i{
+ color: rgba(206, 33, 206, 0.966);
+}

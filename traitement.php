@@ -125,7 +125,7 @@ if(isset($_POST['connexion'])){
     }
 }
 
-// PUBLICATION 
+// PUBLICATION (la table posts)
 
 if(isset($_POST["publier"])){
 
@@ -135,7 +135,7 @@ if(isset($_POST["publier"])){
      $tmp= $_FILES['img']['tmp_name'];
 
      $destination = $_SERVER['DOCUMENT_ROOT'].'/ESPACE_MEMBRES/img/'.$img_name;
-
+//envoyer l'image dans le dossier image
      move_uploaded_file($tmp,   $destination );
 
      // CONNEXION A LA BDD
@@ -153,5 +153,26 @@ try{
      echo $e->getMessage();
  }
 }
+// pour incrementer la valeur de like
+if(isset($_GET['idpost'])){
+ $dbconnect = dbconnexion();
+ //prepare la requet
 
+ $request=$dbconnect->prepare("SELECT likes FROM posts WHERE id_post = ?");
+
+//  execute la requete
+
+$request->execute (array($_GET['idpost']));
+// on recupere le resultat et convertir en tablea par methode fetch
+
+$likes = $request->fetch();
+//  echo$likes['likes'];
+
+// requet pour modifier le nombre des $likes
+
+$request1 = $dbconnect->prepare('UPDATE posts SET likes =? WHERE id_post = ?');
+// executer la requete
+$request1->execute(array($likes['likes'] +1, $_GET['idpost']));
+header('Location: accueil.php');
+}
 ?>
