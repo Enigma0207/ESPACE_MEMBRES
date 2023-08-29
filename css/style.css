@@ -3,7 +3,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #bb6da198;
            
         }
 
@@ -65,6 +65,7 @@
    
 .btn{
     margin-bottom: -20px;
+  
 }
 .btn:hover {
             background-color: #8ca045;
@@ -80,7 +81,7 @@
     left: 300px;
     width: 100px;
     margin: auto;
-    height: 30px;
+    height: 50px;
 }
 
 .valider:hover {
@@ -97,10 +98,54 @@
 
 p {
   font-size: 16px;
-  color: rgb(51, 51, 51);
+  color: rgb(238, 29, 29);
   margin: 0; /* Pour supprimer les marges par défaut du paragraphe */
 }
 
 marquee {
   display: inline-block; /* Pour empêcher le marquee de prendre toute la largeur */
+}
+img{
+    width: 100px;
+    border-radius: 80px;
+    margin-right: 10px;
+}
+
+
+nav{
+    margin-top: 10px;
+padding-top: 10px;
+ display:flex ;
+ align-items: center;
+ justify-content: end;
+ border: solid black 2px;
+ padding-bottom: 7px;
+ background-color: #45a0495b;
+ padding-right: 50px;
+
+}
+
+.formeNav{
+padding: 1px;
+ background-color: #45a0495b;
+width: 60px;
+}
+
+.bienvenue{
+    margin-right: 7px;
+}
+.container{
+    margin-left: 35%;
+    width: 80%;
+}
+
+.connecting{
+   display: flex;
+   justify-content: center;
+ 
+}
+.publier{
+    position: relative;
+    left: 350px;
+    top: 20px;
 }

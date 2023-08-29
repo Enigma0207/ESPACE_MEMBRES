@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once ("action.php");
 if(isset($_POST["valider"])){// pour inscription
 
@@ -56,7 +56,7 @@ if(isset($_POST['connexion'])){
 
  
 
-    $db = dBConnexion();
+    $connexion = dbconnexion();
 
  
 
@@ -64,41 +64,54 @@ if(isset($_POST['connexion'])){
 
  
 
-    $request = $db->prepare("SELECT * FROM membres WHERE pseudo = ?");
+    $connexionRequest = $connexion->prepare("SELECT * FROM membres WHERE pseudo = ?");
+    $connexionRequest->execute(array($pseudo));
+    $utilisateur =$connexionRequest->fetch(PDO::FETCH_ASSOC);
 
     // Execution de la requête
 
  
 
-    try {
+    // try {
 
-        $request->execute([$pseudo]);
+    //     $request->execute([$pseudo]);
 
-        $user = $request->fetch();
+    //     $user = $request->fetch();
 
-    } catch (PDOException $error) {
+    // } catch (PDOException $error) {
 
-        echo $error->getMessage();
+    //     echo $error->getMessage();
 
-    }
+    // }
 
  
-
     if (empty($utilisateur)) {
 
-        echo "Pseudo inconnu";
+        // echo "Pseudo inconnu";
+         $_SESSION["error"] = "utilisateur inconnu"; //ici cest juste quand le pseudo est incorrect dans inscription
+         // et rester sur la meme page connexion
+         header("Location:connexion.php");
 
         // header('refresh: 2; http://localhost/espace_membre/connexion.php');
 
     } else {
+        //on verifie de mot de passe, la fonctopnpassword_verify prebds 2 param:ce que utilisateur a tapé et ce qui se trouve das la base des données
 
-        if (password_verify(($mdp, $utilisateur["mdp"])) {
-
+      if (password_verify($mdp, $utilisateur["mdp"])){
+    // la variable $_SESSION est un tableau .
+    // toute  toute supeurglobal est un tableau en php ex $_post
            // creer les variable de session
-           $_SESSION ["pseudo"] = $utilisateur["pseudo"];
-           $_SESSION ["pseudo"] = $utilisateur["pseudo"];
-           $_SESSION ["img"] = $utilisateur["profil_img"];
+           $_SESSION["id"] = $utilisateur["id_membres"];
+           $_SESSION["pseudo"] = $utilisateur["pseudo"];
+           $_SESSION["img"] = $utilisateur["profil_img"];
+           // $_SESSION = [
+           // 'id' => 1,
+           // "pseudo" => "WassilaDors",
+           // "img" => "sommeil-enfant-dormir.jpg"
+           // ];
 
+
+        //    on va aller 
            header("Location:accueil.php");
 
         } else {
@@ -110,6 +123,35 @@ if(isset($_POST['connexion'])){
         }
 
     }
+}
+
+// PUBLICATION 
+
+if(isset($_POST["publier"])){
+
+    $message = htmlspecialchars($_POST["message"]);
+
+     $img_name=$_FILES['img']['name'];
+     $tmp= $_FILES['img']['tmp_name'];
+
+     $destination = $_SERVER['DOCUMENT_ROOT'].'/ESPACE_MEMBRES/img/'.$img_name;
+
+     move_uploaded_file($tmp,   $destination );
+
+     // CONNEXION A LA BDD
+
+     $dbconnect =  dbconnexion();
+    //  preparation de la requete
+   $request = $dbconnect->prepare("INSERT INTO posts (membre_id, photo, text) VALUES (?,?,?)");
+
+//    execution de la requete
+
+try{
+    $request->execute(array($_SESSION['id'] ,  $img_name, $message)); 
+
+ }catch(PDOExeption $e){
+     echo $e->getMessage();
+ }
 }
 
 ?>

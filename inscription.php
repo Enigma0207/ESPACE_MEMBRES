@@ -21,7 +21,7 @@
                  <div class="banner">
                    <p>
                       <marquee behavior="scroll" direction="left">
-                       salut KARIMA.
+                       salut LILI ET GUANAYA.
                       </marquee>
                     </p>
                  </div>
