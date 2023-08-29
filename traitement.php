@@ -101,17 +101,18 @@ if(isset($_POST['connexion'])){
     // la variable $_SESSION est un tableau .
     // toute  toute supeurglobal est un tableau en php ex $_post
            // creer les variable de session
+
+       
+
            $_SESSION["id"] = $utilisateur["id_membres"];
            $_SESSION["pseudo"] = $utilisateur["pseudo"];
            $_SESSION["img"] = $utilisateur["profil_img"];
-           // $_SESSION = [
-           // 'id' => 1,
-           // "pseudo" => "WassilaDors",
-           // "img" => "sommeil-enfant-dormir.jpg"
-           // ];
+            //    creation de cookie qui va styocker l'identifiant de l'utilisateur pour une meilleur experience cad on va connecter automatiquement
+        // apès verification
 
+        setcookie('id_user', $utilisateur['id_membres'], time() +3600, '/', 'localhost', false , true);
 
-        //    on va aller 
+           
            header("Location:accueil.php");
 
         } else {

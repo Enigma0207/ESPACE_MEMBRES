@@ -1,4 +1,5 @@
 <?php  session_start() ;// mettre avant la html cest pour demarer une session, fait la liaison avec toutes les session
+echo $_COOKIE["id_user"];
 require_once 'fonction1.php';
 if(!isset($_SESSION['id'])){// silya pas de session active
     header("Location: connexion.php");// rediriger vers le formulaire
